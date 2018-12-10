@@ -41,207 +41,22 @@ In the cell below:
 * Use numpy to set a random seed of `0`.
 * Set all matplotlib visualizations to appear inline.
 
-
-```python
-import pandas as pd
-import numpy as np
-np.random.seed(0)
-import matplotlib.pyplot as plt
-%matplotlib inline
-```
-
 Now, let's load our data and inspect it. You'll find the data stored in `wholesale_customers_data.csv`. 
 
 In the cell below, load the data into a DataFrame and then display the head to ensure everything loaded correctly.
 
 
 ```python
-raw_df = pd.read_csv('wholesale_customers_data.csv')
-raw_df.head()
+raw_df = None
 ```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Channel</th>
-      <th>Region</th>
-      <th>Fresh</th>
-      <th>Milk</th>
-      <th>Grocery</th>
-      <th>Frozen</th>
-      <th>Detergents_Paper</th>
-      <th>Delicassen</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2</td>
-      <td>3</td>
-      <td>12669</td>
-      <td>9656</td>
-      <td>7561</td>
-      <td>214</td>
-      <td>2674</td>
-      <td>1338</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>3</td>
-      <td>7057</td>
-      <td>9810</td>
-      <td>9568</td>
-      <td>1762</td>
-      <td>3293</td>
-      <td>1776</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2</td>
-      <td>3</td>
-      <td>6353</td>
-      <td>8808</td>
-      <td>7684</td>
-      <td>2405</td>
-      <td>3516</td>
-      <td>7844</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1</td>
-      <td>3</td>
-      <td>13265</td>
-      <td>1196</td>
-      <td>4221</td>
-      <td>6404</td>
-      <td>507</td>
-      <td>1788</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2</td>
-      <td>3</td>
-      <td>22615</td>
-      <td>5410</td>
-      <td>7198</td>
-      <td>3915</td>
-      <td>1777</td>
-      <td>5185</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 Now, let's go ahead and store the `'Channel'` column in a separate variable, and then drop both the `'Channel'` and `'Region'` columnns. Then, display the head of the new DataFrame to ensure everything worked correctly. 
 
 
 ```python
-channels = df['Channel']
-df = raw_df.drop(['Channel',  'Region'], axis=1, inplace=False)
-df.head()
+channels = None
+df = None
 ```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Fresh</th>
-      <th>Milk</th>
-      <th>Grocery</th>
-      <th>Frozen</th>
-      <th>Detergents_Paper</th>
-      <th>Delicassen</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>12669</td>
-      <td>9656</td>
-      <td>7561</td>
-      <td>214</td>
-      <td>2674</td>
-      <td>1338</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>7057</td>
-      <td>9810</td>
-      <td>9568</td>
-      <td>1762</td>
-      <td>3293</td>
-      <td>1776</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>6353</td>
-      <td>8808</td>
-      <td>7684</td>
-      <td>2405</td>
-      <td>3516</td>
-      <td>7844</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>13265</td>
-      <td>1196</td>
-      <td>4221</td>
-      <td>6404</td>
-      <td>507</td>
-      <td>1788</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>22615</td>
-      <td>5410</td>
-      <td>7198</td>
-      <td>3915</td>
-      <td>1777</td>
-      <td>5185</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 Now, let's get right down to it and begin our clustering analysis. 
 
@@ -253,38 +68,16 @@ In the cell below:
 
 
 ```python
-from sklearn.cluster import KMeans
-```
+k_means = None
 
-
-```python
-k_means = KMeans(n_clusters=2)
-k_means.fit(df)
-cluster_preds = k_means.predict(df)
+cluster_preds = None
 ```
 
 Now, let's use some of the metrics we've learned about to check the performance of our segmentation. We'll use `calinski_harabaz_score` and `adjusted_rand_score`, which can both be found inside `sklearn.metrics.cluster`. 
 
 In the cell below, import these scoring functions. 
 
-
-```python
-from sklearn.metrics.cluster import calinski_harabaz_score, adjusted_rand_score
-```
-
 Now, let's start with CH Score, to get the variance ratio. 
-
-
-```python
-calinski_harabaz_score(df, cluster_preds)
-```
-
-
-
-
-    171.68461633384186
-
-
 
 Although we don't have any other numbers to compare this to, this is a pretty low score, suggesting that our clusters aren't great. 
 
@@ -293,18 +86,6 @@ Since we actually have ground-truth labels in this case, we can actually use the
 Adjusted Rand Score is bounded between -1 and 1. A score close to 1 shows that the clusters are almost identical. A score close to 0 means that predictions are essentially random, while a score close to -1 means that the predictions are pathologically bad, since they are worse than random chance. 
 
 In the cell below, call `adjusted_rand_score` and pass in our `channels` and `cluster_preds` to see how well our first iteration of clustering did. 
-
-
-```python
-adjusted_rand_score(channels, cluster_preds)
-```
-
-
-
-
-    -0.03060891241109425
-
-
 
 According to these results, our clusterings were essentially no better than random chance. Let's see if we can improve this. 
 
@@ -317,38 +98,6 @@ In the cells below:
 * Import a [StandardScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) object and use it to transform our dataset. 
 * Create another K-Means object, fit it to our scaled data, and then use it to predict clusters.
 * Calculate the Adjusted Rand Score of our new predictions and our labels. 
-
-
-```python
-from sklearn.preprocessing import StandardScaler
-scaler = StandardScaler()
-scaled_df = scaler.fit_transform(df)
-```
-
-    C:\Users\medio\AppData\Local\Continuum\anaconda3\lib\site-packages\sklearn\preprocessing\data.py:625: DataConversionWarning: Data with input dtype int64 were all converted to float64 by StandardScaler.
-      return self.partial_fit(X, y)
-    C:\Users\medio\AppData\Local\Continuum\anaconda3\lib\site-packages\sklearn\base.py:462: DataConversionWarning: Data with input dtype int64 were all converted to float64 by StandardScaler.
-      return self.fit(X, **fit_params).transform(X)
-    
-
-
-```python
-scaled_k_means = KMeans(n_clusters=2)
-scaled_k_means.fit(scaled_df)
-scaled_preds = scaled_k_means.predict(scaled_df)
-```
-
-
-```python
-adjusted_rand_score(channels, scaled_preds)
-```
-
-
-
-
-    0.19214043169327583
-
-
 
 That's a big improvement! Although it's not perfect, we can see that scaling our data had a significant effect on the quality of our clusters. 
 
@@ -367,48 +116,6 @@ In the cells below:
 
 **_NOTE:_** Your overall goal here is to get the highest possible Adjusted Rand Score. Don't be afraid to change parameters and rerun things to see how it changes. 
 
-
-```python
-from sklearn.decomposition import PCA
-```
-
-
-```python
-pca = PCA(n_components=4)
-pca_df = pca.fit_transform(scaled_df)
-```
-
-
-```python
-np.cumsum(pca.explained_variance_ratio_)
-```
-
-
-
-
-    array([0.44082893, 0.72459292, 0.84793705, 0.94189209])
-
-
-
-
-```python
-pca_k_means = KMeans(n_clusters=2)
-pca_k_means.fit(pca_df)
-pca_preds = pca_k_means.predict(pca_df)
-```
-
-
-```python
-adjusted_rand_score(channels, pca_preds)
-```
-
-
-
-
-    0.23084287036169227
-
-
-
 **_Question_**:  What was the Highest Adjusted Rand Score you achieved? Interpret this score, and determine the overall quality of the clustering. Did PCA affect the performance overall?  How many Principal Components resulted in the best overall clustering performance? Why do you think this is?
 
 Write your answer below this line:
@@ -423,65 +130,6 @@ Now that we've tried doing market segmentation with K-Means Clustering, let's en
 In the cells below, use [Agglomerative Clustering](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html) to make cluster predictions on the datasets we've created, and see how HAC's performance compares to K-Mean's performance. 
 
 **_NOTE_**: Don't just try HAC on the PCA-transformed dataset--also compare algorithm performance on the scaled and unscaled datasets, as well!
-
-
-```python
-from sklearn.cluster import AgglomerativeClustering
-
-hac = AgglomerativeClustering(n_clusters=2)
-hac.fit(pca_df)
-hac_pca_preds = hac.labels_
-```
-
-
-```python
-adjusted_rand_score(channels, hac_pca_preds)
-```
-
-
-
-
-    0.04822381910875346
-
-
-
-
-```python
-hac2 = AgglomerativeClustering(n_clusters=2)
-hac2.fit(scaled_df)
-hac_scaled_preds = hac2.labels_
-```
-
-
-```python
-adjusted_rand_score(channels, hac_scaled_preds)
-```
-
-
-
-
-    0.022565317001188977
-
-
-
-
-```python
-hac3 = AgglomerativeClustering(n_clusters=2)
-hac3.fit(df)
-hac__preds = hac3.labels_
-```
-
-
-```python
-adjusted_rand_score(channels, hac__preds)
-```
-
-
-
-
-    -0.01923156414375716
-
-
 
 ## Summary
 
