@@ -1,5 +1,5 @@
 
-# Market Segmentation With Clustering - Lab
+# Market Segmentation with Clustering - Lab
 
 ## Introduction
 
