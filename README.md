@@ -1,5 +1,5 @@
 
-# Market Segmentation With Clustering - Lab
+# Market Segmentation with Clustering - Lab
 
 ## Introduction
 
@@ -329,7 +329,7 @@ scaled_df = scaler.fit_transform(df)
       return self.partial_fit(X, y)
     C:\Users\medio\AppData\Local\Continuum\anaconda3\lib\site-packages\sklearn\base.py:462: DataConversionWarning: Data with input dtype int64 were all converted to float64 by StandardScaler.
       return self.fit(X, **fit_params).transform(X)
-    
+
 
 
 ```python
