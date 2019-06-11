@@ -14,7 +14,7 @@ You will be able to:
 
 ## Getting Started
 
-In this lab, we're going to work with the [Wholesale Customers Dataset] from the UCI Machine Learning Datasets Respository. This dataset contains data on wholesale purchasing information from real businesses. These businesses range from small cafes and hotels to grocery stores and other retailers. 
+In this lab, we're going to work with the [Wholesale Customers Dataset] from the UCI Machine Learning Datasets Repository. This dataset contains data on wholesale purchasing information from real businesses. These businesses range from small cafes and hotels to grocery stores and other retailers. 
 
 Here's the data dictionary for this dataset:
 
@@ -50,7 +50,7 @@ In the cell below, load the data into a DataFrame and then display the head to e
 raw_df = None
 ```
 
-Now, let's go ahead and store the `'Channel'` column in a separate variable, and then drop both the `'Channel'` and `'Region'` columnns. Then, display the head of the new DataFrame to ensure everything worked correctly. 
+Now, let's go ahead and store the `'Channel'` column in a separate variable, and then drop both the `'Channel'` and `'Region'` columns. Then, display the head of the new DataFrame to ensure everything worked correctly. 
 
 
 ```python
@@ -105,7 +105,7 @@ That's a big improvement! Although it's not perfect, we can see that scaling our
 
 Since clustering algorithms are distance-based, this means that dimensionality has a definite effect on their performance. The greater the dimensionality of the dataset, the the greater the total area that we have to worry about our clusters existing in. Let's try using some Principal Component Analysis to transform our data and see if this affects the performance of our clustering algorithm. 
 
-Since you've aready seen PCA in a previous section, we won't hold your hand through section too much. 
+Since you've already seen PCA in a previous section, we won't hold your hand through section too much. 
 
 In the cells below:
 
@@ -121,7 +121,7 @@ In the cells below:
 Write your answer below this line:
 _______________________________________________________________________________________________________________________________
 
-The highest ARS should be ~0.23, which suggests that the clusters are better than random chance, but far from perfect.  Overall, the quality of the clustering algorithm did alot better than the first algorithm we ran on unscaled data. The best performance was achieved when reducing the number of Principal Components down to 4. The increase in model performance is likely due to the reduction in dimensionality. Although dropping the last 2 PCs means that we lose about 6% of our explained variance, this proved to be a net-positive tradeoff for the reduction in dimensionality it provided. 
+The highest ARS should be ~0.23, which suggests that the clusters are better than random chance, but far from perfect.  Overall, the quality of the clustering algorithm did a lot better than the first algorithm we ran on unscaled data. The best performance was achieved when reducing the number of Principal Components down to 4. The increase in model performance is likely due to the reduction in dimensionality. Although dropping the last 2 PCs means that we lose about 6% of our explained variance, this proved to be a net-positive trade-off for the reduction in dimensionality it provided. 
 
 ## Optional Step: Hierarchical Agglomerative Clustering
 
