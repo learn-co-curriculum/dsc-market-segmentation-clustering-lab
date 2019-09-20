@@ -41,6 +41,11 @@ In the cell below:
 * Use numpy to set a random seed of `0`.
 * Set all matplotlib visualizations to appear inline.
 
+
+```python
+
+```
+
 Now, let's load our data and inspect it. You'll find the data stored in `wholesale_customers_data.csv`. 
 
 In the cell below, load the data into a DataFrame and then display the head to ensure everything loaded correctly.
@@ -68,16 +73,31 @@ In the cell below:
 
 
 ```python
+
+```
+
+
+```python
 k_means = None
 
 cluster_preds = None
 ```
 
-Now, let's use some of the metrics we've learned about to check the performance of our segmentation. We'll use `calinski_harabaz_score` and `adjusted_rand_score`, which can both be found inside `sklearn.metrics.cluster`. 
+Now, let's use some of the metrics we've learned about to check the performance of our segmentation. We'll use `calinski_harabasz_score` and `adjusted_rand_score`, which can both be found inside `sklearn.metrics.cluster`. 
 
 In the cell below, import these scoring functions. 
 
+
+```python
+
+```
+
 Now, let's start with CH Score, to get the variance ratio. 
+
+
+```python
+
+```
 
 Although we don't have any other numbers to compare this to, this is a pretty low score, suggesting that our clusters aren't great. 
 
@@ -86,6 +106,11 @@ Since we actually have ground-truth labels in this case, we can actually use the
 Adjusted Rand Score is bounded between -1 and 1. A score close to 1 shows that the clusters are almost identical. A score close to 0 means that predictions are essentially random, while a score close to -1 means that the predictions are pathologically bad, since they are worse than random chance. 
 
 In the cell below, call `adjusted_rand_score` and pass in our `channels` and `cluster_preds` to see how well our first iteration of clustering did. 
+
+
+```python
+
+```
 
 According to these results, our clusterings were essentially no better than random chance. Let's see if we can improve this. 
 
@@ -98,6 +123,21 @@ In the cells below:
 * Import a [StandardScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) object and use it to transform our dataset. 
 * Create another K-Means object, fit it to our scaled data, and then use it to predict clusters.
 * Calculate the Adjusted Rand Score of our new predictions and our labels. 
+
+
+```python
+
+```
+
+
+```python
+
+```
+
+
+```python
+
+```
 
 That's a big improvement! Although it's not perfect, we can see that scaling our data had a significant effect on the quality of our clusters. 
 
@@ -116,6 +156,31 @@ In the cells below:
 
 **_NOTE:_** Your overall goal here is to get the highest possible Adjusted Rand Score. Don't be afraid to change parameters and rerun things to see how it changes. 
 
+
+```python
+
+```
+
+
+```python
+
+```
+
+
+```python
+
+```
+
+
+```python
+
+```
+
+
+```python
+
+```
+
 **_Question_**:  What was the Highest Adjusted Rand Score you achieved? Interpret this score, and determine the overall quality of the clustering. Did PCA affect the performance overall?  How many Principal Components resulted in the best overall clustering performance? Why do you think this is?
 
 Write your answer below this line:
@@ -130,6 +195,36 @@ Now that we've tried doing market segmentation with K-Means Clustering, let's en
 In the cells below, use [Agglomerative Clustering](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html) to make cluster predictions on the datasets we've created, and see how HAC's performance compares to K-Mean's performance. 
 
 **_NOTE_**: Don't just try HAC on the PCA-transformed dataset--also compare algorithm performance on the scaled and unscaled datasets, as well!
+
+
+```python
+
+```
+
+
+```python
+
+```
+
+
+```python
+
+```
+
+
+```python
+
+```
+
+
+```python
+
+```
+
+
+```python
+
+```
 
 ## Summary
 
