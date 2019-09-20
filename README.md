@@ -157,7 +157,7 @@ Now, let's go ahead and store the `'Channel'` column in a separate variable, and
 
 
 ```python
-channels = df['Channel']
+channels = raw_df['Channel']
 df = raw_df.drop(['Channel',  'Region'], axis=1, inplace=False)
 df.head()
 ```
@@ -263,20 +263,20 @@ k_means.fit(df)
 cluster_preds = k_means.predict(df)
 ```
 
-Now, let's use some of the metrics we've learned about to check the performance of our segmentation. We'll use `calinski_harabaz_score` and `adjusted_rand_score`, which can both be found inside `sklearn.metrics.cluster`. 
+Now, let's use some of the metrics we've learned about to check the performance of our segmentation. We'll use `calinski_harabasz_score` and `adjusted_rand_score`, which can both be found inside `sklearn.metrics.cluster`. 
 
 In the cell below, import these scoring functions. 
 
 
 ```python
-from sklearn.metrics.cluster import calinski_harabaz_score, adjusted_rand_score
+from sklearn.metrics.cluster import calinski_harabasz_score, adjusted_rand_score
 ```
 
 Now, let's start with CH Score, to get the variance ratio. 
 
 
 ```python
-calinski_harabaz_score(df, cluster_preds)
+calinski_harabasz_score(df, cluster_preds)
 ```
 
 
@@ -325,12 +325,6 @@ scaler = StandardScaler()
 scaled_df = scaler.fit_transform(df)
 ```
 
-    C:\Users\medio\AppData\Local\Continuum\anaconda3\lib\site-packages\sklearn\preprocessing\data.py:625: DataConversionWarning: Data with input dtype int64 were all converted to float64 by StandardScaler.
-      return self.partial_fit(X, y)
-    C:\Users\medio\AppData\Local\Continuum\anaconda3\lib\site-packages\sklearn\base.py:462: DataConversionWarning: Data with input dtype int64 were all converted to float64 by StandardScaler.
-      return self.fit(X, **fit_params).transform(X)
-
-
 
 ```python
 scaled_k_means = KMeans(n_clusters=2)
@@ -346,7 +340,7 @@ adjusted_rand_score(channels, scaled_preds)
 
 
 
-    0.19214043169327583
+    0.212843835451224
 
 
 
@@ -405,7 +399,7 @@ adjusted_rand_score(channels, pca_preds)
 
 
 
-    0.23084287036169227
+    0.23664708510864038
 
 
 
