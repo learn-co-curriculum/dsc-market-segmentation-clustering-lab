@@ -3,18 +3,17 @@
 
 ## Introduction
 
-In this lab, we'll use our knowledge of clustering to perform market segmentation on a real-world dataset!
+In this lab, you'll use your knowledge of clustering to perform market segmentation on a real-world dataset!
 
 ## Objectives
 
-You will be able to:
+In this lab you will: 
 
-* Identify and explain what Market Segmentation is, and how clustering can be used for segmentation
-* Use clustering algorithms to create and interpret a market segmentation on real-world data
+- Use clustering to create and interpret market segmentation on real-world data 
 
 ## Getting Started
 
-In this lab, we're going to work with the [Wholesale Customers Dataset] from the UCI Machine Learning Datasets Repository. This dataset contains data on wholesale purchasing information from real businesses. These businesses range from small cafes and hotels to grocery stores and other retailers. 
+In this lab, you're going to work with the [Wholesale customers dataset](https://archive.ics.uci.edu/ml/datasets/wholesale+customers) from the UCI Machine Learning datasets repository. This dataset contains data on wholesale purchasing information from real businesses. These businesses range from small cafes and hotels to grocery stores and other retailers. 
 
 Here's the data dictionary for this dataset:
 
@@ -37,8 +36,8 @@ Let's get started by importing everything we'll need.
 
 In the cell below:
 
-* Import pandas, numpy, and matplotlib.pyplot, and set the standard alias for each. 
-* Use numpy to set a random seed of `0`.
+* Import `pandas`, `numpy`, and `matplotlib.pyplot`, and set the standard alias for each. 
+* Use `numpy` to set a random seed of `0`.
 * Set all matplotlib visualizations to appear inline.
 
 
@@ -46,16 +45,16 @@ In the cell below:
 
 ```
 
-Now, let's load our data and inspect it. You'll find the data stored in `wholesale_customers_data.csv`. 
+Now, let's load our data and inspect it. You'll find the data stored in `'wholesale_customers_data.csv'`. 
 
-In the cell below, load the data into a DataFrame and then display the head to ensure everything loaded correctly.
+In the cell below, load the data into a DataFrame and then display the first five rows to ensure everything loaded correctly.
 
 
 ```python
 raw_df = None
 ```
 
-Now, let's go ahead and store the `'Channel'` column in a separate variable, and then drop both the `'Channel'` and `'Region'` columns. Then, display the head of the new DataFrame to ensure everything worked correctly. 
+Now, let's go ahead and store the `'Channel'` column in a separate variable, and then drop both the `'Channel'` and `'Region'` columns. Then, display the first five rows of the new DataFrame to ensure everything worked correctly. 
 
 
 ```python
@@ -68,8 +67,8 @@ Now, let's get right down to it and begin our clustering analysis.
 In the cell below:
 
 * Import `KMeans` from `sklearn.cluster`, and then create an instance of it. Set the number of clusters to `2`
-* Fit the cluster object.
-* Get the predictions from the clustering algorithm and store them in `cluster_preds`
+* Fit it to the data (`df`) 
+* Get the predictions from the clustering algorithm and store them in `cluster_preds` 
 
 
 ```python
@@ -83,7 +82,7 @@ k_means = None
 cluster_preds = None
 ```
 
-Now, let's use some of the metrics we've learned about to check the performance of our segmentation. We'll use `calinski_harabasz_score` and `adjusted_rand_score`, which can both be found inside `sklearn.metrics.cluster`. 
+Now, use some of the metrics to check the performance. You'll use `calinski_harabasz_score()` and `adjusted_rand_score()`, which can both be found inside `sklearn.metrics.cluster`. 
 
 In the cell below, import these scoring functions. 
 
@@ -92,46 +91,50 @@ In the cell below, import these scoring functions.
 
 ```
 
-Now, let's start with CH Score, to get the variance ratio. 
+Now, start with CH score, to get the variance ratio. 
 
 
 ```python
 
 ```
 
-Although we don't have any other numbers to compare this to, this is a pretty low score, suggesting that our clusters aren't great. 
+Although you don't have any other numbers to compare this to, this is a pretty low score, suggesting that the clusters aren't great. 
 
-Since we actually have ground-truth labels in this case, we can actually use the `adjusted_rand_score` to tell us how well the clustering performed. Adjust Rand Score is meant to compare two clusterings, which the score can interpret our labels as. This will tell us how similar our predicted clusters are to the actual channels. 
+Since you actually have ground-truth labels in this case, you use `adjusted_rand_score()` to check how well the clustering performed. Adjusted Rand score is meant to compare two clusterings, which the score can interpret our labels as. This will tell us how similar the predicted clusters are to the actual channels. 
 
-Adjusted Rand Score is bounded between -1 and 1. A score close to 1 shows that the clusters are almost identical. A score close to 0 means that predictions are essentially random, while a score close to -1 means that the predictions are pathologically bad, since they are worse than random chance. 
+Adjusted Rand score is bounded between -1 and 1. A score close to 1 shows that the clusters are almost identical. A score close to 0 means that predictions are essentially random, while a score close to -1 means that the predictions are pathologically bad, since they are worse than random chance. 
 
-In the cell below, call `adjusted_rand_score` and pass in our `channels` and `cluster_preds` to see how well our first iteration of clustering did. 
+In the cell below, call `adjusted_rand_score()` and pass in `channels` and `cluster_preds` to see how well your first iteration of clustering performed. 
 
 
 ```python
 
 ```
 
-According to these results, our clusterings were essentially no better than random chance. Let's see if we can improve this. 
+According to these results, the clusterings were essentially no better than random chance. Let's see if you can improve this. 
 
-### Scaling Our Dataset
+### Scaling our dataset
 
-Recall that the results of K-Means Clustering is heavily affected by scaling. Since the clustering algorithm is distance-based, this makes sense. Let's use a `StandardScaler` object to scale our dataset and then try our clustering again and see if the results are different. 
+Recall that K-means clustering is heavily affected by scaling. Since the clustering algorithm is distance-based, this makes sense. Let's use `StandardScaler` to scale our dataset and then try our clustering again and see if the results are different. 
 
 In the cells below:
 
-* Import a [StandardScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) object and use it to transform our dataset. 
-* Create another K-Means object, fit it to our scaled data, and then use it to predict clusters.
-* Calculate the Adjusted Rand Score of our new predictions and our labels. 
+* Import and instantiate [StandardScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) and use it to transform the dataset  
+* Instantiate and fit K-means to this scaled data, and then use it to predict clusters 
+* Calculate the adjusted Rand score for these new predictions 
 
 
 ```python
 
+scaler = None
+scaled_df = None
 ```
 
 
 ```python
+scaled_k_means = None
 
+scaled_preds = None
 ```
 
 
@@ -143,23 +146,18 @@ That's a big improvement! Although it's not perfect, we can see that scaling our
 
 ## Incorporating PCA
 
-Since clustering algorithms are distance-based, this means that dimensionality has a definite effect on their performance. The greater the dimensionality of the dataset, the the greater the total area that we have to worry about our clusters existing in. Let's try using some Principal Component Analysis to transform our data and see if this affects the performance of our clustering algorithm. 
+Since clustering algorithms are distance-based, this means that dimensionality has a definite effect on their performance. The greater the dimensionality of the dataset, the greater the total area that we have to worry about our clusters existing in. Let's try using Principal Component Analysis to transform our data and see if this affects the performance of our clustering algorithm. 
 
-Since you've already seen PCA in a previous section, we won't hold your hand through section too much. 
+Since you've already seen PCA in a previous section, we will let you figure this out by yourself. 
 
 In the cells below:
 
-* Import [PCA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html) from the appropriate module in sklearn
-* Create a `PCA` instance and use it to tranform our scaled data. 
-* Investigate the explained variance ratio for each Principal Component. Consider dropping certain components to reduce dimensionality if you feel it is worth the loss of information.
-* Create a new `KMeans` object, fit it to our pca-transformed data, and check the Adjusted Rand Score of the predictions it makes. 
+* Import [PCA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html) from the appropriate module in sklearn 
+* Create a `PCA` instance and use it to tranform our scaled data  
+* Investigate the explained variance ratio for each Principal Component. Consider dropping certain components to reduce dimensionality if you feel it is worth the loss of information 
+* Create a new `KMeans` object, fit it to our pca-transformed data, and check the adjusted Rand score of the predictions it makes. 
 
-**_NOTE:_** Your overall goal here is to get the highest possible Adjusted Rand Score. Don't be afraid to change parameters and rerun things to see how it changes. 
-
-
-```python
-
-```
+**_NOTE:_** Your overall goal here is to get the highest possible adjusted Rand score. Don't be afraid to change parameters and rerun things to see how it changes. 
 
 
 ```python
@@ -181,20 +179,25 @@ In the cells below:
 
 ```
 
-**_Question_**:  What was the Highest Adjusted Rand Score you achieved? Interpret this score, and determine the overall quality of the clustering. Did PCA affect the performance overall?  How many Principal Components resulted in the best overall clustering performance? Why do you think this is?
+
+```python
+
+```
+
+**_Question_**:  What was the Highest Adjusted Rand Score you achieved? Interpret this score, and determine the overall quality of the clustering. Did PCA affect the performance overall?  How many principal components resulted in the best overall clustering performance? Why do you think this is?
 
 Write your answer below this line:
 _______________________________________________________________________________________________________________________________
 
-The highest ARS should be ~0.23, which suggests that the clusters are better than random chance, but far from perfect.  Overall, the quality of the clustering algorithm did a lot better than the first algorithm we ran on unscaled data. The best performance was achieved when reducing the number of Principal Components down to 4. The increase in model performance is likely due to the reduction in dimensionality. Although dropping the last 2 PCs means that we lose about 6% of our explained variance, this proved to be a net-positive trade-off for the reduction in dimensionality it provided. 
+## Optional (Level up) 
 
-## Optional Step: Hierarchical Agglomerative Clustering
+### Hierarchical Agglomerative Clustering
 
-Now that we've tried doing market segmentation with K-Means Clustering, let's end this lab by trying with HAC!
+Now that we've tried doing market segmentation with K-means clustering, let's end this lab by trying with HAC!
 
-In the cells below, use [Agglomerative Clustering](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html) to make cluster predictions on the datasets we've created, and see how HAC's performance compares to K-Mean's performance. 
+In the cells below, use [Agglomerative clustering](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html) to make cluster predictions on the datasets we've created, and see how HAC's performance compares to K-mean's performance. 
 
-**_NOTE_**: Don't just try HAC on the PCA-transformed dataset--also compare algorithm performance on the scaled and unscaled datasets, as well!
+**_NOTE_**: Don't just try HAC on the PCA-transformed dataset -- also compare algorithm performance on the scaled and unscaled datasets, as well! 
 
 
 ```python
@@ -228,4 +231,4 @@ In the cells below, use [Agglomerative Clustering](https://scikit-learn.org/stab
 
 ## Summary
 
-In this lab, we used our knowledge of clustering to perform a market segmentation on a real-world dataset. We started with a cluster analysis with poor performance, and then implemented some changes to iteratively improve the performance of the clustering analysis!
+In this lab, you used our knowledge of clustering to perform a market segmentation on a real-world dataset. You started with a cluster analysis with poor performance, and then implemented some changes to iteratively improve the performance of the clustering analysis!
