@@ -1,4 +1,3 @@
-
 # Market Segmentation with Clustering - Lab
 
 ## Introduction
@@ -30,7 +29,7 @@ Here's the data dictionary for this dataset:
 
 
 
-One benefit of working with this dataset for practice with segmentation is that we actually have the ground-truth labels of what market segment each customer actually belongs to. For this reason, we'll borrow some methodology from Supervised Learning and store these labels separately, so that we can use them afterwards to check how well our clustering segmentation actually performed. 
+One benefit of working with this dataset for practice with segmentation is that we actually have the ground-truth labels of what market segment each customer actually belongs to. For this reason, we'll borrow some methodology from supervised learning and store these labels separately, so that we can use them afterward to check how well our clustering segmentation actually performed. 
 
 Let's get started by importing everything we'll need.
 
@@ -152,7 +151,7 @@ raw_df.head()
 
 
 
-Now, let's go ahead and store the `'Channel'` column in a separate variable, and then drop both the `'Channel'` and `'Region'` columns. Then, display the first five rows of the new DataFrame to ensure everything worked correctly. 
+Now, let's go ahead and store the `'Channel'` column in a separate variable and then drop both the `'Channel'` and `'Region'` columns. Then, display the first five rows of the new DataFrame to ensure everything worked correctly. 
 
 
 ```python
@@ -271,7 +270,7 @@ In the cell below, import these scoring functions.
 from sklearn.metrics.cluster import calinski_harabasz_score, adjusted_rand_score
 ```
 
-Now, start with CH score, to get the variance ratio. 
+Now, start with CH score to get the variance ratio. 
 
 
 ```python
@@ -287,7 +286,7 @@ calinski_harabasz_score(df, cluster_preds)
 
 Although you don't have any other numbers to compare this to, this is a pretty low score, suggesting that the clusters aren't great. 
 
-Since you actually have ground-truth labels in this case, you use `adjusted_rand_score()` to check how well the clustering performed. Adjusted Rand score is meant to compare two clusterings, which the score can interpret our labels as. This will tell us how similar the predicted clusters are to the actual channels. 
+Since you actually have ground-truth labels, in this case you can use `adjusted_rand_score()` to check how well the clustering performed. Adjusted Rand score is meant to compare two clusterings, which the score can interpret our labels as. This will tell us how similar the predicted clusters are to the actual channels. 
 
 Adjusted Rand score is bounded between -1 and 1. A score close to 1 shows that the clusters are almost identical. A score close to 0 means that predictions are essentially random, while a score close to -1 means that the predictions are pathologically bad, since they are worse than random chance. 
 
@@ -309,12 +308,12 @@ According to these results, the clusterings were essentially no better than rand
 
 ### Scaling our dataset
 
-Recall that K-means clustering is heavily affected by scaling. Since the clustering algorithm is distance-based, this makes sense. Let's use `StandardScaler` to scale our dataset and then try our clustering again and see if the results are different. 
+Recall that k-means clustering is heavily affected by scaling. Since the clustering algorithm is distance-based, this makes sense. Let's use `StandardScaler` to scale our dataset and then try our clustering again and see if the results are different. 
 
 In the cells below:
 
 * Import and instantiate [StandardScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html) and use it to transform the dataset  
-* Instantiate and fit K-means to this scaled data, and then use it to predict clusters 
+* Instantiate and fit k-means to this scaled data, and then use it to predict clusters 
 * Calculate the adjusted Rand score for these new predictions 
 
 
@@ -354,9 +353,9 @@ Since you've already seen PCA in a previous section, we will let you figure this
 In the cells below:
 
 * Import [PCA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html) from the appropriate module in sklearn 
-* Create a `PCA` instance and use it to tranform our scaled data  
+* Create a `PCA` instance and use it to transform our scaled data  
 * Investigate the explained variance ratio for each Principal Component. Consider dropping certain components to reduce dimensionality if you feel it is worth the loss of information 
-* Create a new `KMeans` object, fit it to our pca-transformed data, and check the adjusted Rand score of the predictions it makes. 
+* Create a new `KMeans` object, fit it to our PCA-transformed data, and check the adjusted Rand score of the predictions it makes. 
 
 **_NOTE:_** Your overall goal here is to get the highest possible adjusted Rand score. Don't be afraid to change parameters and rerun things to see how it changes. 
 
@@ -402,7 +401,7 @@ adjusted_rand_score(channels, pca_preds)
 
 
 
-**_Question_**:  What was the Highest Adjusted Rand Score you achieved? Interpret this score, and determine the overall quality of the clustering. Did PCA affect the performance overall?  How many principal components resulted in the best overall clustering performance? Why do you think this is?
+**_Question_**:  What was the Highest Adjusted Rand Score you achieved? Interpret this score and determine the overall quality of the clustering. Did PCA affect the performance overall?  How many principal components resulted in the best overall clustering performance? Why do you think this is?
 
 Write your answer below this line:
 _______________________________________________________________________________________________________________________________
@@ -429,9 +428,9 @@ it provided. """
 
 ### Hierarchical Agglomerative Clustering
 
-Now that we've tried doing market segmentation with K-means clustering, let's end this lab by trying with HAC!
+Now that we've tried doing market segmentation with k-means clustering, let's end this lab by trying with HAC!
 
-In the cells below, use [Agglomerative clustering](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html) to make cluster predictions on the datasets we've created, and see how HAC's performance compares to K-mean's performance. 
+In the cells below, use [Agglomerative clustering](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html) to make cluster predictions on the datasets we've created and see how HAC's performance compares to k-mean's performance. 
 
 **_NOTE_**: Don't just try HAC on the PCA-transformed dataset -- also compare algorithm performance on the scaled and unscaled datasets, as well! 
 
@@ -496,4 +495,4 @@ adjusted_rand_score(channels, hac__preds)
 
 ## Summary
 
-In this lab, you used our knowledge of clustering to perform a market segmentation on a real-world dataset. You started with a cluster analysis with poor performance, and then implemented some changes to iteratively improve the performance of the clustering analysis!
+In this lab, you used your knowledge of clustering to perform a market segmentation on a real-world dataset. You started with a cluster analysis with poor performance, and then implemented some changes to iteratively improve the performance of the clustering analysis!
