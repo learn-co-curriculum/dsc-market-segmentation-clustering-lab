@@ -1,3 +1,4 @@
+
 # Market Segmentation with Clustering - Lab
 
 ## Introduction
@@ -103,7 +104,7 @@ raw_df.head()
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <td>0</td>
       <td>2</td>
       <td>3</td>
       <td>12669</td>
@@ -114,7 +115,7 @@ raw_df.head()
       <td>1338</td>
     </tr>
     <tr>
-      <th>1</th>
+      <td>1</td>
       <td>2</td>
       <td>3</td>
       <td>7057</td>
@@ -125,7 +126,7 @@ raw_df.head()
       <td>1776</td>
     </tr>
     <tr>
-      <th>2</th>
+      <td>2</td>
       <td>2</td>
       <td>3</td>
       <td>6353</td>
@@ -136,7 +137,7 @@ raw_df.head()
       <td>7844</td>
     </tr>
     <tr>
-      <th>3</th>
+      <td>3</td>
       <td>1</td>
       <td>3</td>
       <td>13265</td>
@@ -147,7 +148,7 @@ raw_df.head()
       <td>1788</td>
     </tr>
     <tr>
-      <th>4</th>
+      <td>4</td>
       <td>2</td>
       <td>3</td>
       <td>22615</td>
@@ -210,7 +211,7 @@ df.head()
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <td>0</td>
       <td>12669</td>
       <td>9656</td>
       <td>7561</td>
@@ -219,7 +220,7 @@ df.head()
       <td>1338</td>
     </tr>
     <tr>
-      <th>1</th>
+      <td>1</td>
       <td>7057</td>
       <td>9810</td>
       <td>9568</td>
@@ -228,7 +229,7 @@ df.head()
       <td>1776</td>
     </tr>
     <tr>
-      <th>2</th>
+      <td>2</td>
       <td>6353</td>
       <td>8808</td>
       <td>7684</td>
@@ -237,7 +238,7 @@ df.head()
       <td>7844</td>
     </tr>
     <tr>
-      <th>3</th>
+      <td>3</td>
       <td>13265</td>
       <td>1196</td>
       <td>4221</td>
@@ -246,7 +247,7 @@ df.head()
       <td>1788</td>
     </tr>
     <tr>
-      <th>4</th>
+      <td>4</td>
       <td>22615</td>
       <td>5410</td>
       <td>7198</td>
@@ -306,7 +307,7 @@ In the cell below, import these scoring functions.
 
 ```python
 # __SOLUTION__ 
-from sklearn.metrics.cluster import calinski_harabasz_score, adjusted_rand_score
+from sklearn.metrics import calinski_harabasz_score, adjusted_rand_score
 ```
 
 Now, start with CH score to get the variance ratio. 
@@ -500,7 +501,7 @@ adjusted_rand_score(channels, pca_preds)
 
 
 
-    0.23664708510864038
+    0.13885372763476506
 
 
 
@@ -512,21 +513,14 @@ ________________________________________________________________________________
 
 ```python
 # __SOLUTION__ 
-"""The highest ARS should be ~0.23, which suggests that the clusters are better than random chance, 
-but far from perfect.  Overall, the quality of the clustering algorithm did a lot better than the 
-first algorithm we ran on unscaled data. The best performance was achieved when reducing the 
-number of principal components down to 4. The increase in model performance is likely due to the 
-reduction in dimensionality. Although dropping the last 2 PCs means that we lose about 6% of 
-our explained variance, this proved to be a net-positive trade-off for the reduction in dimensionality 
-it provided. """
+# The highest ARS should be ~0.23, which suggests that the clusters are better than random chance, 
+# but far from perfect.  Overall, the quality of the clustering algorithm did a lot better than the 
+# first algorithm we ran on unscaled data. The best performance was achieved when reducing the 
+# number of principal components down to 4. The increase in model performance is likely due to the 
+# reduction in dimensionality. Although dropping the last 2 PCs means that we lose about 6% of 
+# our explained variance, this proved to be a net-positive trade-off for the reduction in dimensionality 
+# it provided.
 ```
-
-
-
-
-    'The highest ARS should be ~0.23, which suggests that the clusters are better than random chance, \nbut far from perfect.  Overall, the quality of the clustering algorithm did a lot better than the \nfirst algorithm we ran on unscaled data. The best performance was achieved when reducing the \nnumber of principal components down to 4. The increase in model performance is likely due to the \nreduction in dimensionality. Although dropping the last 2 PCs means that we lose about 6% of \nour explained variance, this proved to be a net-positive trade-off for the reduction in dimensionality \nit provided. '
-
-
 
 ## Optional (Level up) 
 
