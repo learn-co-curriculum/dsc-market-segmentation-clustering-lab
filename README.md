@@ -262,7 +262,7 @@ k_means.fit(df)
 cluster_preds = k_means.predict(df)
 ```
 
-Now, use some of the metrics to check the performance. You'll use `calinski_harabasz_score()` and `adjusted_rand_score()`, which can both be found inside `sklearn.metrics.cluster`. 
+Now, use some of the metrics to check the performance. You'll use `calinski_harabasz_score()` and `adjusted_rand_score()`, which can both be found inside [`sklearn.metrics`](https://scikit-learn.org/stable/modules/clustering.html#clustering-performance-evaluation). 
 
 In the cell below, import these scoring functions. 
 
